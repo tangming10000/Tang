@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/Windows/Seismic_Map.png</file>
+        <file>icons/Windows/Seismic_OpenGL.png</file>
+        <file>icons/Windows/Seismic_Profile.png</file>
+    </qresource>
+</RCC>
