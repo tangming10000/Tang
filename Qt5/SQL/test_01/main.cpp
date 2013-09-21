@@ -1,12 +1,31 @@
+/**
+  @mainpage
+  @author tangming10000@126.com
+  */
+
 #include <QCoreApplication>
 #include <QtSql/QSql>
 #include <QtSql>
 #include <QDebug>
 #include <QSqlQuery>
+#include <QStringList>
+
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
+    /**
+      check the Qt supported databases drivers.
+      */
+    qDebug()<<"The total Qt database supported drivers are:";
+    QStringList drivers = QSqlDatabase::drivers();
+    foreach (QString driver, drivers) {
+        qDebug() << driver;
+    }
+
+
+    //connect to the postgresql database
     QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
     db.setDatabaseName("test_db");
     db.setUserName("tommy");
@@ -14,9 +33,6 @@ int main(int argc, char *argv[])
     db.setPassword("tangming");
     if(!db.open())
     {
-//        QMessageBox::information(this, "信息提示", "数据库连接失败.",
-//                                        QMessageBox::Yes | QMessageBox::No,
-//                                        QMessageBox::Yes);
         qDebug()<<"据库连接失败."<<db.lastError().text();
         db.close();
         exit(EXIT_FAILURE);
